@@ -1,0 +1,56 @@
+{% extends 'hospitalapp/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="content">
+    <!-- <div class="row">
+        <a class="btn btn-warning" href="/evolucion/create/{{ evolucion.id_historiaclinicaFK }}">Nueva Evolucion</a>
+    </div> -->
+    <div class="row">
+        {% for evolucion in object_list %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header card-header-success">
+                    <h4 class="card-title"><strong>Fecha de la Evolucion:</strong><br> {{evolucion.fecha_hora }}</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-title"><strong>Paciente:</strong> {{evolucion.id_historiaclinicaFK.id_pacienteFK.nombre }} {{evolucion.id_historiaclinicaFK.id_pacienteFK.apellido_paterno}} {{evolucion.id_historiaclinicaFK.id_pacienteFK.apellido_materno}}</p>
+                    <p class="card-title"><strong>Edad:</strong> {{evolucion.id_historiaclinicaFK.id_pacienteFK.edad}}</p>
+                    <p class="card-title"><strong>Fecha de Ingreso:</strong> {{evolucion.id_historiaclinicaFK.fecha_ingresohospital}}</p>
+                    <span class="material-icons" style="font-size: 20px;">
+                        account_circle
+                    </span>
+                    <strong>Dr(a):</strong>: {{ evolucion.id_medicoFK.first_name }} {{ historia.id_medicoFK.last_name }}
+                </div>
+                <div class="card-footer ">
+                    <div class="stats ml-auto">
+                        <a rel="tooltip" data-placement="bottom" title="Ver más" href="/evolucion/detalle/{{evolucion.id_evolucionPK }}"><i class="material-icons" style="font-size: 30px;color: darkcyan;">visibility</i></a>
+                        <a rel="tooltip" data-placement="bottom" title="Editar" href="/evolucion/update/{{ evolucion.id_evolucionPK }}"><i class="material-icons" style="font-size: 30px;color: darkcyan;">edit</i></a>
+                        <a rel="tooltip" data-placement="bottom" title="Anular" href="javascript:cambiar_estado({{ evolucion.id_evolucionPK }})"><i class="material-icons" style="font-size: 30px;color: darkcyan;">change_circle</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% block script %}
+
+<script>
+    function cambiar_estado(id_evolucion){
+        $.ajax({
+            type:'POST',
+            url: "{% url 'EvolucionChangeSatus' %}",
+            data:{
+                "csrfmiddlewaretoken":"{{ csrf_token }}",
+                "pk": id_evolucion,
+            },
+        }).done(function (data){
+            console.log(data);
+            location.href = "/evolucion/index/" + data
+        })
+    }
+</script>
+
+{% endblock %}
+{% endblock %}

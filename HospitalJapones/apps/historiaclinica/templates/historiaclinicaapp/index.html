@@ -1,0 +1,37 @@
+{% extends 'hospitalapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content">
+    <div class="row">
+        <a class="btn btn-warning" href="{% url 'createhistoriaclinica' %}">Registrar Historia Clinica</a>
+    </div>
+    <div class="row">
+        {% for historia in object_list %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header card-header-success">
+                    <h4 class="card-title"><strong>Cod. HC:</strong> {{historia.cod_historiaclinica }}</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-title">
+                        <strong>Paciente:</strong> {{historia.id_pacienteFK.nombre }} {{historia.id_pacienteFK.apellido_paterno}} {{historia.id_historiaclinicaFK.id_pacienteFK.apellido_materno}}
+                    </p>
+                    <p class="card-title"><strong>Edad:</strong> {{historia.id_pacienteFK.edad}}</p>
+                    <p class="card-title"><strong>Fecha de Ingreso:</strong> {{historia.fecha_ingresohospital}}</p>
+                    <p>
+                        <strong>Dr(a):</strong>: {{ historia.id_medicoFK.first_name }} {{ historia.id_medicoFK.last_name }}
+                    </p>
+                    <div class="card-stats">
+                        <div class="stats ml-auto">
+                            <a href="/evolucion/index/{{ historia.id_historiaPK }}" rel="tooltip" data-placement="bottom" title="ver mas"><i class="material-icons">visibility</i></a>
+                            <a href="/evolucion/create/{{historia.id_historiaPK}}" rel="tooltip" data-placement="bottom" title="Nueva Evolución"><i class="material-icons" style="font-size: 30px; color: darkcyan;">add</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
