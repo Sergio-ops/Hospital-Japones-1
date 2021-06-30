@@ -3,9 +3,9 @@
 {% block content %}
 
 <div class="content">
-    <!-- <div class="row">
-        <a class="btn btn-warning" href="/evolucion/create/{{ evolucion.id_historiaclinicaFK }}">Nueva Evolucion</a>
-    </div> -->
+    <div class="row">
+        <a class="btn btn-warning" href="/evolucion/create/{{id_historia}}">Nueva Evolucion</a>
+    </div>
     <div class="row">
         {% for evolucion in object_list %}
         <div class="col-md-4">
@@ -20,10 +20,11 @@
                     <span class="material-icons" style="font-size: 20px;">
                         account_circle
                     </span>
-                    <strong>Dr(a):</strong>: {{ evolucion.id_medicoFK.first_name }} {{ historia.id_medicoFK.last_name }}
+                    <strong>Dr(a):</strong>: {{ evolucion.id_historiaclinicaFK.id_medicoFK.first_name }} {{ evolucion.id_historiaclinicaFK.id_medicoFK.last_name }}
                 </div>
                 <div class="card-footer ">
                     <div class="stats ml-auto">
+                        <a rel="tooltip" data-placement="bottom" title="Crear Indicación" href="/indicacion/create/{{evolucion.id_evolucionPK }}"><i class="material-icons" style="font-size: 30px;color: darkcyan;">note_add</i></a>
                         <a rel="tooltip" data-placement="bottom" title="Ver más" href="/evolucion/detalle/{{evolucion.id_evolucionPK }}"><i class="material-icons" style="font-size: 30px;color: darkcyan;">visibility</i></a>
                         <a rel="tooltip" data-placement="bottom" title="Editar" href="/evolucion/update/{{ evolucion.id_evolucionPK }}"><i class="material-icons" style="font-size: 30px;color: darkcyan;">edit</i></a>
                         <a rel="tooltip" data-placement="bottom" title="Anular" href="javascript:cambiar_estado({{ evolucion.id_evolucionPK }})"><i class="material-icons" style="font-size: 30px;color: darkcyan;">change_circle</i></a>

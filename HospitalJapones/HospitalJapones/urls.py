@@ -27,6 +27,7 @@ urlpatterns = [
     path('paciente/', include('apps.paciente.urls')),
     path('historia/', include('apps.historiaclinica.urls')),
     path('evolucion/', include('apps.evolucion.urls')),
+    path('indicacion/', include('apps.indicacion.urls')),
 
 ]
 

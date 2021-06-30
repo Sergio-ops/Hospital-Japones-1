@@ -15,7 +15,7 @@ class Evolucion(models.Model):
     id_examenfisicoFK = models.ForeignKey(ExamenFisico, on_delete=models.CASCADE, null=True)
     id_resultadolabFK = models.ForeignKey(ResultadoLab,on_delete=models.CASCADE,null=True)
     nro_cama = models.IntegerField('Nro. de Cama', blank=True,null=True)
-    fecha_hora = models.DateTimeField('Fecha', auto_now=True)
+    fecha_hora = models.DateTimeField('Fecha', blank=False, null=False)
     dias_domo = models.IntegerField('Dias en Domo', blank=True,null=True)
     analisis = models.TextField('Análisis',blank=True,null=True)
     plan = models.TextField('Plan',blank=True,null=True)

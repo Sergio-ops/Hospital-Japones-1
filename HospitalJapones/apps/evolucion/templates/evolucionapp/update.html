@@ -160,28 +160,33 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Piel y Mucosas</label>
-                                <textarea type="text" class="form-control" name="piel_mucosa" rows="3">{{ object.id_examenfisicoFK.piel_mucosa}}</textarea>
+                                <textarea type="text" class="form-control" name="piel_mucosa"
+                                    rows="3" readonly>{{ object.id_historiaclinicaFK.piel_mucosa}}</textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Neurologico</label>
-                                <textarea type="text" class="form-control" name="neurologico" rows="3">{{ object.id_examenfisicoFK.neurologico}}</textarea>
+                                <textarea type="text" class="form-control" name="neurologico"
+                                    rows="3" readonly>{{ object.id_historiaclinicaFK.neurologico}}</textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Cardiopulmonar</label>
-                                <textarea type="text" class="form-control" name="cardiopulmonar" rows="3">{{ object.id_examenfisicoFK.cardiopulmonar}}</textarea>
+                                <textarea type="text" class="form-control" name="cardiopulmonar"
+                                    rows="3" readonly>{{ object.id_historiaclinicaFK.cardiopulmonar}}</textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Abdomen</label>
-                                <textarea type="text" class="form-control" name="abdomen" rows="3">{{ object.id_examenfisicoFK.abdomen}}</textarea>
+                                <textarea type="text" class="form-control" name="abdomen"
+                                    rows="3" readonly>{{ object.id_historiaclinicaFK.abdomen}}</textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Genitourinario</label>
-                                <textarea type="text" class="form-control" name="genitourinario" rows="3">{{ object.id_examenfisicoFK.genitourinario}}</textarea>
+                                <textarea type="text" class="form-control" name="genitourinario"
+                                    rows="3" readonly>{{ object.id_historiaclinicaFK.genitourinario}}</textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Musculoesqueletico</label>
                                 <textarea type="text" class="form-control" name="musculoesqueletico"
-                                    rows="3">{{ object.id_examenfisicoFK.musculoesqueletico}}</textarea>
+                                    rows="3" readonly>{{ object.id_historiaclinicaFK.musculoesqueletico}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -593,12 +598,6 @@
             parameters.append('pao_fio', $('input[name="pao_fio"]').val());
             parameters.append('pi', $('input[name="pi"]').val());
             parameters.append('peso', $('input[name="peso"]').val());
-            parameters.append('piel_mucosa', $('textarea[name="piel_mucosa"]').val());
-            parameters.append('neurologico', $('textarea[name="neurologico"]').val());
-            parameters.append('cardiopulmonar', $('textarea[name="cardiopulmonar"]').val());
-            parameters.append('abdomen', $('textarea[name="abdomen"]').val());
-            parameters.append('genitourinario', $('textarea[name="genitourinario"]').val());
-            parameters.append('musculoesqueletico', $('textarea[name="musculoesqueletico"]').val());
 
             //parametros para el laboratorio
             parameters.append('lab_gb', $('input[name="lab_gb"]').val());

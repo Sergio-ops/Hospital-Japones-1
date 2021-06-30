@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'apps.solicitudlaboratorio',
     'apps.medidasgenerales',
     'apps.tratamientoindicacion',
-    'apps.nombresolucion',
     'apps.solucion',
     'apps.indicacion',
 ]

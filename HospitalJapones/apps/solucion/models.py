@@ -1,5 +1,5 @@
 from django.db import models
-from ..nombresolucion.models import NombreSolucion
+from ..indicacion.models import Indicacion
 # Create your models here.
 class Solucion(models.Model):
     id_solucionPK = models.AutoField(primary_key=True)
@@ -15,11 +15,11 @@ class Solucion(models.Model):
         db_table = "tb_solucion"
 
 
-class det_solucion_nombresolucion(models.Model):
+class det_solucion(models.Model):
     id_det_solucionPK = models.AutoField(primary_key=True)
     id_solucionFK = models.ForeignKey(Solucion, on_delete=models.CASCADE)
-    id_nombresolucionFK =models.ForeignKey(NombreSolucion, on_delete=models.CASCADE)
-    fecha = models.DateField('Fecha', blank=True,null=True)
+    id_indicacionFK =models.ForeignKey(Indicacion, on_delete=models.CASCADE)
+    detalle_indicacion = models.TextField('Indicacion',max_length=200,blank=True,null=True)
 
     class Meta:
         db_table ="det_solucion_nombresolucion"

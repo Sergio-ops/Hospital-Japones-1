@@ -27,6 +27,11 @@ class EvolucionListFilterbyHC(ListView):
     def get_queryset(self):
         fk = self.kwargs['fk']
         return self.model.objects.filter(id_historiaclinicaFK = fk, estado = 'Activo')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['id_historia'] = self.kwargs['fk']
+        return context
 
 def change_status(request):
     pk = request.POST.get('pk')
@@ -45,7 +50,7 @@ class EvolucionDetailCreate(DetailView):
 
     def get_object(self):
         id = self.kwargs.get("id")
-        return get_object_or_404(Evolucion, id_evolucionPK=id)
+        return get_object_or_404(HistoriaClinica, id_historiaPK=id)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -104,12 +109,6 @@ class EvolucionDetailCreate(DetailView):
                         examenfisico.pao_fio = request.POST['pao_fio']
                         examenfisico.pi = request.POST['pi']
                         examenfisico.peso = request.POST['peso']
-                        examenfisico.piel_mucosa = request.POST['piel_mucosa']
-                        examenfisico.neurologico = request.POST['neurologico']
-                        examenfisico.cardiopulmonar = request.POST['cardiopulmonar']
-                        examenfisico.abdomen = request.POST['abdomen']
-                        examenfisico.genitourinario = request.POST['genitourinario']
-                        examenfisico.musculoesqueletico = request.POST['musculoesqueletico']
                         examenfisico.save()
 
                         laboratorio = ResultadoLab()
@@ -143,6 +142,7 @@ class EvolucionDetailCreate(DetailView):
                         evolucion.id_medicoFK_id = request.POST['id_medicoPK']
                         evolucion.id_examenfisicoFK_id = examenfisico.id_examenfisicoPK
                         evolucion.id_resultadolabFK_id = laboratorio.id_resultadolabPK
+                        evolucion.fecha_hora = datetime.now()
                         evolucion.nro_cama = request.POST['nro_cama']
                         evolucion.dias_domo = request.POST['dias_domo']
                         evolucion.analisis = request.POST['analisis']
@@ -230,12 +230,6 @@ class EvolucionUpdate(UpdateView):
                         examenfisico.pao_fio = request.POST['pao_fio']
                         examenfisico.pi = request.POST['pi']
                         examenfisico.peso = request.POST['peso']
-                        examenfisico.piel_mucosa = request.POST['piel_mucosa']
-                        examenfisico.neurologico = request.POST['neurologico']
-                        examenfisico.cardiopulmonar = request.POST['cardiopulmonar']
-                        examenfisico.abdomen = request.POST['abdomen']
-                        examenfisico.genitourinario = request.POST['genitourinario']
-                        examenfisico.musculoesqueletico = request.POST['musculoesqueletico']
                         examenfisico.save()
 
                         laboratorio = ResultadoLab.objects.get(pk = self.get_object().id_resultadolabFK_id)

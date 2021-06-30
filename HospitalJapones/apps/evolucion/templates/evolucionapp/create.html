@@ -8,22 +8,22 @@
                 <div class="card">
                     <div class="card-header card-header-success">
                         <h4 class="card-title"><strong>Cod. HC:</strong>
-                            {{object.id_historiaclinicaFK.cod_historiaclinica}}</h4>
+                            {{object.cod_historiaclinica}}</h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <h4><strong>Paciente:</strong> {{ object.id_historiaclinicaFK.id_pacienteFK.nombre }} {{object.id_historiaclinicaFK.id_pacienteFK.apellido_paterno }} {{object.id_historiaclinicaFK.id_pacienteFK.apellido_materno }}</h4>
-                                <h4><strong>Edad:</strong> {{object.id_historiaclinicaFK.id_pacienteFK.edad}} años</h4>
-                                <h4><strong>Nro. Documento:</strong> {{object.id_historiaclinicaFK.id_pacienteFK.nro_documento}}</h4>
+                                <h4><strong>Paciente:</strong> {{ object.id_pacienteFK.nombre }} {{object.id_pacienteFK.apellido_paterno }} {{object.id_historiaclinicaFK.id_pacienteFK.apellido_materno }}</h4>
+                                <h4><strong>Edad:</strong> {{object.id_pacienteFK.edad}} años</h4>
+                                <h4><strong>Nro. Documento:</strong> {{object.id_pacienteFK.nro_documento}}</h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <h4><strong>Antecedentes:</strong><br/> {{ object.id_historiaclinicaFK.antecedente}}</h4>
+                                <h4><strong>Antecedentes:</strong><br/> {{ object.antecedente}}</h4>
                             </div>
                             <div class="col">
-                                <h4><strong>Diagnosticos:</strong><br/>{{object.id_historiaclinicaFK.impresion_diagnostica}}</h4>
+                                <h4><strong>Diagnosticos:</strong><br/>{{object.impresion_diagnostica}}</h4>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
         </div>
         <form method="POST">
             <input type="hidden" name="action" value="evolucion_add">
-            <input type="hidden" name="id_historiaclinicaFK" value="{{object.id_historiaclinicaFK_id}}">
+            <input type="hidden" name="id_historiaclinicaFK" value="{{object.id_historiaPK}}">
             <input type="hidden" name="id_medicoPK" value="{{user.id_medicoPK}}">
             
             
@@ -156,28 +156,33 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Piel y Mucosas</label>
-                                <textarea type="text" class="form-control" name="piel_mucosa" rows="3"></textarea>
+                                <textarea type="text" class="form-control" name="piel_mucosa"
+                                    rows="3" readonly>{{ object.piel_mucosa}}</textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Neurologico</label>
-                                <textarea type="text" class="form-control" name="neurologico" rows="3"></textarea>
+                                <textarea type="text" class="form-control" name="neurologico"
+                                    rows="3" readonly>{{ object.neurologico}}</textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Cardiopulmonar</label>
-                                <textarea type="text" class="form-control" name="cardiopulmonar" rows="3"></textarea>
+                                <textarea type="text" class="form-control" name="cardiopulmonar"
+                                    rows="3" readonly>{{ object.cardiopulmonar}}</textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Abdomen</label>
-                                <textarea type="text" class="form-control" name="abdomen" rows="3"></textarea>
+                                <textarea type="text" class="form-control" name="abdomen"
+                                    rows="3" readonly>{{ object.abdomen}}</textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Genitourinario</label>
-                                <textarea type="text" class="form-control" name="genitourinario" rows="3"></textarea>
+                                <textarea type="text" class="form-control" name="genitourinario"
+                                    rows="3" readonly>{{ object.genitourinario}}</textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label class="bmd-label-floating">Musculoesqueletico</label>
                                 <textarea type="text" class="form-control" name="musculoesqueletico"
-                                    rows="3"></textarea>
+                                    rows="3" readonly>{{ object.musculoesqueletico}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -514,7 +519,7 @@
         };
         item.nombre = cultivo.value;
         item.fecha = fecha_actual;
-        item.estado = "En Transcurso";
+        item.estado = "En Curso";
         cultivos_list.add(item);
         cultivo.value = "";
     };
@@ -583,12 +588,6 @@
             parameters.append('pao_fio', $('input[name="pao_fio"]').val());
             parameters.append('pi', $('input[name="pi"]').val());
             parameters.append('peso', $('input[name="peso"]').val());
-            parameters.append('piel_mucosa', $('textarea[name="piel_mucosa"]').val());
-            parameters.append('neurologico', $('textarea[name="neurologico"]').val());
-            parameters.append('cardiopulmonar', $('textarea[name="cardiopulmonar"]').val());
-            parameters.append('abdomen', $('textarea[name="abdomen"]').val());
-            parameters.append('genitourinario', $('textarea[name="genitourinario"]').val());
-            parameters.append('musculoesqueletico', $('textarea[name="musculoesqueletico"]').val());
 
             //parametros para el laboratorio
             parameters.append('lab_gb', $('input[name="lab_gb"]').val());

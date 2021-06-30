@@ -19,12 +19,6 @@ class ExamenFisico(models.Model):
     pao_fio = models.CharField('PAO2/FIO2',max_length=30,blank=True,null=True, default='-')
     pi = models.CharField('PI',max_length=30,blank=True,null=True, default='-')
     peso = models.CharField('Peso',max_length=50,blank=True, null=True, default='-')
-    piel_mucosa = models.TextField('Piel y Mucosas',blank=True, null=True, default='-')
-    neurologico = models.TextField('Neurologico',blank=True, null=True, default='-')
-    cardiopulmonar = models.TextField('Cardiopulmonar',blank=True, null=True, default='-')
-    abdomen = models.TextField('Abdomen',blank=True, null=True, default='-')
-    genitourinario = models.TextField('Genitourinario',blank=True, null=True, default='-')
-    musculoesqueletico = models.TextField('Musculoesqueletico',blank=True, null=True, default='-')
 
     class Meta:
         verbose_name = 'ExamenFisico'

@@ -1,0 +1,151 @@
+{% extends 'hospitalapp/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <p>{{object.nro_cama}}</p>
+                    <p>{{object.id_historiaclinicaFK.id_pacienteFK.nombre}}
+                        {{object.id_historiaclinicaFK.id_pacienteFK.apellido_paterno}}
+                        {{object.id_historiaclinicaFK.id_pacienteFK.apellido_materno}}</p>
+                </div>
+                <div class="col">
+                    <p>{{object.id_historiaclinicaFK.cod_historiaclinica}}</p>
+                    <p>{{object.id_historiaclinicaFK.id_pacienteFK.edad}}</p>
+                    <p>{{object.id_historiaclinicaFK.id_pacienteFK.fecha_nacimiento}}</p>
+                    <p>{{object.id_historiaclinicaFK.fecha_ingresohospital}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="bmd bmd-label-floating">Dieta</label>
+                    <textarea class="form-control" name="dieta" rows="3"></textarea>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="bmd bmd-label-floating">Terapia Respiratoria</label>
+                    <textarea class="form-control" name="terapia_respiratoria" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <h3 class="row justify-content-center"><strong>Medidas Generales</strong></h3>
+                        <div class="table-responsive" style="box-shadow: 0 0 5px transparent; border-radius: 15px;">
+                            <table class="table table-hover" id="tblcultivo">
+                                <div class="col-md-10">
+                                    <div class="form-group bmd-form-group">
+                                        <input type="text" class="form-control" id="cultivo"
+                                            onkeyup="if(event.keyCode == 13) enviardatos()"
+                                            placeholder="Ingrese los datos" />
+                                    </div>
+                                </div>
+                                <thead class="text-info">
+                                    <tr style="max-width: 100%;">
+                                        <th class="th-sm" scope="col">Nombre</th>
+                                        <th class="th-sm" scope="col">Descripción</th>
+                                        <th class="th-sm" scope="col">Quitar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <h3 class="row justify-content-center"><strong>Tratamiento</strong></h3>
+                        <div class="table-responsive" style="box-shadow: 0 0 5px transparent; border-radius: 15px;">
+                            <table class="table table-hover" id="tblmedicamento">
+                                <div class="col-md-10">
+                                    <div class="form-group bmd-form-group">
+                                        <input type="text" name="buscador" class="form-control" id="medicamento" placeholder="Ingrese el medicamento a solicitar" />
+                                    </div>
+                                </div>
+                                <thead class="text-info text-center">
+                                    <tr style="max-width: 100%;">
+                                        <th class="th-sm" scope="col">Medicamento</th>
+                                        <th class="th-sm" scope="col">Cantidad</th>
+                                        <th class="th-sm" scope="col">Indicación</th>
+                                        <th class="th-sm" scope="col">Quitar</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <h3 class="row justify-content-center"><strong>Soluciones</strong></h3>
+                        <div class="table-responsive" style="box-shadow: 0 0 5px transparent; border-radius: 15px;">
+                            <table class="table table-hover" id="tblcultivo">
+                                <div class="col-md-10">
+                                    <div class="form-group bmd-form-group">
+                                        <input type="text" class="form-control" id="cultivo"
+                                            onkeyup="if(event.keyCode == 13) enviardatos()"
+                                            placeholder="Ingrese los datos" />
+                                    </div>
+                                </div>
+                                <thead class="text-info">
+                                    <tr style="max-width: 100%;">
+                                        <th class="th-sm" scope="col">Nombre</th>
+                                        <th class="th-sm" scope="col">Descripción</th>
+                                        <th class="th-sm" scope="col">Indicación</th>
+                                        <th class="th-sm" scope="col">Quitar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <h3 class="row justify-content-center"><strong>Complementarios</strong></h3>
+                        <div class="table-responsive" style="box-shadow: 0 0 5px transparent; border-radius: 15px;">
+                            <table class="table table-hover" id="tblcultivo">
+                                <div class="col-md-10">
+                                    <div class="form-group bmd-form-group">
+                                        <input type="text" class="form-control" id="cultivo"
+                                            onkeyup="if(event.keyCode == 13) enviardatos()"
+                                            placeholder="Ingrese los datos" />
+                                    </div>
+                                </div>
+                                <thead class="text-info">
+                                    <tr style="max-width: 100%;">
+                                        <th class="th-sm" scope="col">Descripción</th>
+                                        <th class="th-sm" scope="col">Estado</th>
+                                        <th class="th-sm" scope="col">Quitar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block script %}
+<script>
+    $('.datepicker').datepicker("setDate", new Date());
+</script>
+{% endblock %}
+{% endblock %}
